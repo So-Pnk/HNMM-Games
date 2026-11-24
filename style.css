@@ -1,0 +1,235 @@
+/* Hyper Nano Méga Machine — l'écran de démarrage d'un vieux PC.
+   Palette « BIOS » : fond bleu, texte gris, titres jaunes, sélection rouge. */
+
+@font-face {
+  font-family: "VT323";
+  src: url("fonts/vt323.woff2") format("woff2");
+  font-display: swap;
+}
+
+:root {
+  --bleu: #0000aa;
+  --bleu-fonce: #000080;
+  --gris: #aaaaaa;
+  --blanc: #ffffff;
+  --jaune: #ffff55;
+  --cyan: #55ffff;
+  --rouge: #aa0000;
+  --noir: #000000;
+  --pas: 8px;
+  --police: "VT323", "DejaVu Sans Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bleu);
+  color: var(--gris);
+  font: 23px/1.25 var(--police);
+  padding-bottom: 56px; /* place pour la barre de touches */
+}
+
+a { color: var(--cyan); text-underline-offset: 3px; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--jaune); outline-offset: 3px; }
+
+/* ---------- Barre de titre ---------- */
+.titre {
+  background: var(--gris);
+  color: var(--bleu);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 20px;
+}
+.titre .briques { display: grid; grid-template-columns: repeat(3, 9px); gap: 2px; }
+.titre .briques i { width: 9px; height: 9px; display: block; }
+.titre strong { font-weight: normal; font-size: 26px; color: var(--noir); }
+.titre span { margin-left: auto; }
+
+/* ---------- Écran principal ---------- */
+.ecran {
+  max-width: 1120px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+.cadre {
+  border: 6px double var(--gris);
+  padding: 22px 28px 26px;
+  position: relative;
+  margin-bottom: 30px;
+}
+/* Titre incrusté dans le cadre, comme une fenêtre de BIOS */
+.cadre > h2 {
+  position: absolute;
+  top: -19px;
+  left: 22px;
+  margin: 0;
+  padding: 0 10px;
+  background: var(--bleu);
+  color: var(--jaune);
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 1.2;
+}
+.cadre > .intro { margin: 4px 0 20px; max-width: 64ch; }
+
+/* ---------- Démarrage (le moment fort) ---------- */
+.post { padding: 8px 0 30px; }
+.post .marque {
+  margin: 0 0 6px;
+  color: var(--blanc);
+  font-weight: normal;
+  font-size: clamp(30px, 9.4vw, 112px);
+  white-space: nowrap;
+  line-height: .86;
+  letter-spacing: -.01em;
+}
+.post .marque .l2 { display: inline; color: var(--jaune); }
+.post .signature { margin: 14px 0 26px; color: var(--blanc); font-size: 26px; max-width: 46ch; }
+.post ol { list-style: none; margin: 0; padding: 0; }
+.post li { display: flex; gap: 12px; max-width: 760px; }
+.post li .pt { flex: 1; overflow: hidden; white-space: nowrap; color: #5555ff; }
+.post li .pt::after { content: "................................................................................................"; }
+.post li .v { color: var(--blanc); }
+.post li .v.ok { color: var(--cyan); }
+.post .attente { margin: 18px 0 0; color: var(--blanc); }
+.curseur { display: inline-block; width: .55em; height: .9em; background: var(--blanc); vertical-align: -2px; animation: clignote 1s steps(1) infinite; }
+@keyframes clignote { 50% { opacity: 0; } }
+
+/* Apparition ligne par ligne, une seule fois au chargement */
+.js .post .seq { visibility: hidden; }
+.js .post .seq.on { visibility: visible; }
+@media (prefers-reduced-motion: reduce) {
+  .js .post .seq { visibility: visible; }
+  .curseur { animation: none; }
+}
+
+/* ---------- Menu de démarrage ---------- */
+.menu { display: grid; grid-template-columns: minmax(260px, 1fr) 1.6fr; gap: 0; border: 2px solid var(--gris); }
+.menu .liste { border-right: 2px solid var(--gris); padding: 14px 0; }
+.menu .liste button {
+  display: flex; justify-content: space-between; gap: 16px;
+  width: 100%; padding: 6px 18px; border: 0; cursor: pointer;
+  background: none; color: var(--blanc); font: inherit; font-size: 26px; text-align: left;
+}
+.menu .liste button small { color: var(--gris); font-size: 21px; }
+.menu .liste button[aria-selected="true"] { background: var(--rouge); }
+.menu .liste button[aria-selected="true"] small { color: var(--blanc); }
+.menu .liste .vide { padding: 14px 18px 0; color: #5555ff; font-size: 20px; }
+.menu .aide { padding: 16px 20px 20px; }
+.menu .aide h3 { margin: 0 0 10px; color: var(--jaune); font-weight: normal; font-size: 22px; }
+.menu .aide img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 2px solid var(--gris); background: var(--noir); }
+.menu .aide p { margin: 14px 0 10px; color: var(--blanc); max-width: 62ch; }
+.menu .aide ul { margin: 0 0 18px; padding: 0; list-style: none; }
+.menu .aide li::before { content: "- "; color: var(--gris); }
+
+.jouer {
+  display: inline-block;
+  padding: 8px 26px 6px;
+  background: var(--rouge);
+  color: var(--blanc);
+  font-size: 32px;
+  text-decoration: none;
+  border: 2px solid var(--blanc);
+  box-shadow: 6px 6px 0 var(--noir);
+}
+.jouer:hover { background: #cc0000; }
+.jouer:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--noir); }
+.jouer kbd { font: inherit; color: var(--jaune); }
+
+/* ---------- Équipe d'astreinte ---------- */
+.equipe { display: grid; grid-template-columns: repeat(7, 1fr); gap: 18px 10px; }
+.equipe figure { margin: 0; text-align: center; }
+.equipe img { height: 112px; width: auto; margin: 0 auto 8px; object-fit: contain; image-rendering: auto; }
+.equipe b { display: block; color: var(--blanc); font-weight: normal; font-size: 25px; line-height: 1; }
+.equipe figcaption span { display: block; font-size: 20px; line-height: 1.1; margin-top: 4px; }
+@media (max-width: 900px) { .equipe { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 520px) { .equipe { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- Lieux ---------- */
+.lieux { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.lieux figure { margin: 0; }
+.lieux img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border: 2px solid var(--gris); background: var(--noir); }
+.lieux figcaption { margin-top: 8px; }
+.lieux figcaption b { color: var(--blanc); font-weight: normal; font-size: 26px; display: block; }
+.lieux figure.large { grid-column: 1 / -1; }
+.lieux figure.large img { aspect-ratio: 21/9; }
+@media (max-width: 760px) { .lieux { grid-template-columns: 1fr; } }
+.menaces tr.sep td { color: var(--jaune); padding-top: 18px; border-bottom: 2px solid var(--gris); }
+
+/* ---------- Menaces : tableau façon BIOS ---------- */
+.menaces { width: 100%; border-collapse: collapse; }
+.menaces th { text-align: left; font-weight: normal; color: var(--jaune); padding: 0 12px 8px 0; border-bottom: 2px solid var(--gris); }
+.menaces td { padding: 6px 12px 6px 0; vertical-align: middle; border-bottom: 1px dashed #5555ff; }
+.menaces td:first-child { width: 72px; }
+.menaces td img { width: 60px; height: 60px; object-fit: contain; }
+.menaces .nom { color: var(--blanc); white-space: nowrap; }
+.menaces q { quotes: "« " " »"; }
+.menaces .niv { white-space: nowrap; text-align: right; }
+.menaces .niv.c { color: var(--blanc); background: var(--rouge); padding: 0 8px; }
+@media (max-width: 640px) {
+  .menaces .niv, .menaces th:last-child { display: none; }
+  .menaces .nom { white-space: normal; }
+}
+
+/* ---------- Commandes ---------- */
+.touches { display: grid; grid-template-columns: max-content 1fr; gap: 6px 26px; margin: 0; }
+.touches dt { color: var(--blanc); }
+.touches dd { margin: 0; }
+kbd.k { font: inherit; color: var(--bleu); background: var(--gris); padding: 0 6px; }
+
+/* ---------- Pied de page ---------- */
+.pied { max-width: 1120px; margin: 0 auto 30px; padding: 0 20px; font-size: 20px; }
+.pied p { margin: 0 0 8px; max-width: 90ch; }
+.pied summary { cursor: pointer; color: var(--blanc); }
+
+/* ---------- Barre de touches (bas d'écran) ---------- */
+.legende {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  display: flex; gap: 34px; justify-content: center; flex-wrap: wrap;
+  padding: 6px 16px; background: var(--gris); color: var(--noir); font-size: 22px;
+}
+.legende b { color: var(--rouge); font-weight: normal; }
+@media (max-width: 640px) { .legende .clavier { display: none; } }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.legende a:focus-visible, .jouer:focus-visible, .liste button:focus-visible { outline: 3px solid var(--jaune); outline-offset: 2px; }
+@media (max-width: 760px) {
+  .menu { grid-template-columns: 1fr; }
+  .menu .liste { border-right: 0; border-bottom: 2px solid var(--gris); padding: 10px 0; }
+  .menu .liste .vide { padding-bottom: 4px; }
+  .menu .aide { padding: 14px; }
+}
+@media (max-width: 640px) {
+  body { font-size: 21px; }
+  .titre > span { display: none; }
+  .post li { flex-wrap: wrap; }
+  .post li .pt { display: none; }
+  .post li .v { margin-left: auto; }
+  .post .marque { font-size: 11.8vw; }
+}
+@media (max-width: 640px) {
+  table.menaces thead { display: none; }
+  table.menaces tr { display: grid; grid-template-columns: 56px 1fr auto; column-gap: 10px; padding: 8px 0; border-bottom: 1px solid #3333cc; }
+  table.menaces td { display: block; padding: 0; border: 0; }
+  table.menaces td:first-child { grid-row: span 2; }
+  table.menaces td:nth-child(3) { grid-column: 2 / 4; grid-row: 2; font-size: 19px; }
+  table.menaces td.niv { grid-column: 3; grid-row: 1; font-size: 18px; padding: 0 6px; align-self: start; }
+  dl.touches { display: block; }
+  dl.touches dt { margin-top: 10px; }
+  dl.touches dd { margin: 0; }
+}
+
+/* ---------- NanoMonsters ---------- */
+.fiche[hidden] { display: none; }
+.tournoi { display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px 12px; }
+@media (max-width: 1200px) { .tournoi { grid-template-columns: repeat(5, 1fr); } }
+.tournoi figure { margin: 0; text-align: center; }
+.tournoi img { height: 96px; width: auto; max-width: 100%; object-fit: contain; margin: 0 auto 8px; }
+.tournoi b { display: block; color: var(--blanc); font-weight: normal; font-size: 24px; line-height: 1; }
+.tournoi figcaption span { display: block; font-size: 19px; line-height: 1.1; margin-top: 4px; }
+@media (max-width: 900px) { .tournoi { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .tournoi { grid-template-columns: repeat(2, 1fr); } }

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HyperNanoMegaMachine, jeux gratuits dans le navigateur</title>
+<meta name="description" content="HyperNanoMegaMachine, studio de jeux gratuits jouables dans le navigateur. Au menu : IT SupeRlike, NanoMonsters et Pare-Feu-TD.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0000aa">
+<link rel="preload" href="fonts/vt323.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<header class="titre">
+  <div class="briques" aria-hidden="true">
+    <i style="background:#aa0000"></i><i style="background:#ffff55"></i><i style="background:#0000aa"></i>
+    <i style="background:#00aa00"></i><i style="background:#aa00aa"></i><i style="background:#ffffff"></i>
+  </div>
+  <strong>HyperNanoMegaMachine</strong>
+  <span>Utilitaire de jeux, version 2.0</span>
+</header>
+
+<main class="ecran">
+
+  <!-- Séquence de démarrage -->
+  <section class="post" aria-label="Démarrage">
+    <h1 class="marque seq">HyperNano<span class="l2">MegaMachine</span></h1>
+    <p class="signature seq">Des jeux gratuits, sans publicité et sans inscription, fabriqués avec le plus grand sérieux pour des usages parfaitement inutiles.</p>
+    <ol>
+      <li class="seq"><span>Test de la mémoire</span><span class="pt"></span><span class="v ok">640 Ko, largement suffisant</span></li>
+      <li class="seq"><span>Recherche de café</span><span class="pt"></span><span class="v ok">trouvé</span></li>
+      <li class="seq"><span>Tickets en attente</span><span class="pt"></span><span class="v">4 812</span></li>
+      <li class="seq"><span>Utilisateurs qui ont « rien touché »</span><span class="pt"></span><span class="v">détectés</span></li>
+      <li class="seq"><span>Jeux installés</span><span class="pt"></span><span class="v ok" id="nb-jeux">3</span></li>
+    </ol>
+    <p class="attente seq">Appuyez sur <kbd class="k">Entrée</kbd> pour lancer un jeu <span class="curseur" aria-hidden="true"></span></p>
+  </section>
+
+  <!-- Menu de démarrage : généré depuis jeux.js -->
+  <section class="cadre" id="demarrage" aria-labelledby="t-menu">
+    <h2 id="t-menu">Menu de démarrage</h2>
+    <div class="menu">
+      <div class="liste" role="tablist" aria-label="Jeux disponibles" id="liste"></div>
+      <div class="aide" id="aide" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <div class="fiche" data-jeu="itsuperlike">
+  <section class="cadre" aria-labelledby="t-equipe">
+    <h2 id="t-equipe">Équipe d'astreinte</h2>
+    <p class="intro">Sept profils, chacun avec son arme et la question qu'on lui pose tous les jours.</p>
+    <div class="equipe">
+      <figure><img src="img/persos/admin.webp" alt=""><figcaption><b>Admin sys</b><span>« Tu peux me donner les droits admin ? »</span></figcaption></figure>
+      <figure><img src="img/persos/reseau.webp" alt=""><figcaption><b>Ingé réseau</b><span>« Le Wi-Fi est lent ! »</span></figcaption></figure>
+      <figure><img src="img/persos/soc.webp" alt=""><figcaption><b>Analyste SOC</b><span>« J'ai cliqué, mais c'était rien. »</span></figcaption></figure>
+      <figure><img src="img/persos/tech.webp" alt=""><figcaption><b>Technicien</b><span>« Tant que tu es là… »</span></figcaption></figure>
+      <figure><img src="img/persos/devops.webp" alt=""><figcaption><b>DevOps</b><span>« En prod vendredi à 17 h ? »</span></figcaption></figure>
+      <figure><img src="img/persos/dev.webp" alt=""><figcaption><b>Développeur</b><span>« C'est 5 minutes, non ? »</span></figcaption></figure>
+      <figure><img src="img/persos/rssi.webp" alt=""><figcaption><b>RSSI</b><span>« Changer de mot de passe ? Encore ? »</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-lieux">
+    <h2 id="t-lieux">Lieux d'intervention</h2>
+    <div class="lieux">
+      <figure><img src="img/carte-openspace.webp" alt="Capture du jeu dans l'open space"><figcaption><b>Open space</b>Bureaux, plantes vertes et réunions surprises de deux heures.</figcaption></figure>
+      <figure><img src="img/carte-serveurs.webp" alt="Capture du jeu dans la salle serveur"><figcaption><b>Salle serveur</b>Allées chaudes, panne de clim et gaz inerte. Restez en mouvement.</figcaption></figure>
+      <figure><img src="img/carte-archives.webp" alt="Capture du jeu dans le sous-sol des archives"><figcaption><b>Sous-sol des archives</b>Pénombre, néons de 1997, inondation et audit surprise.</figcaption></figure>
+      <figure><img src="img/carte-cloud.webp" alt="Capture du jeu dans le Cloud"><figcaption><b>Le Cloud</b>Pas de murs, une région en panne et la facture du mois.</figcaption></figure>
+      <figure class="large"><img src="img/carte-trajet.webp" alt="Quatre captures du trajet : l'appartement, la route sous la pluie, le train et le métro"><figcaption><b>Épisode : Lundi 6 h 00</b>Réveillé à l'aube par la direction en panique. Il faut rejoindre le bureau : l'appartement, la voiture sous la grêle, le train bondé, le métro, puis le hall. Le retard vous poursuit, et chaque étape a son horaire.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-menaces">
+    <h2 id="t-menaces">Menaces détectées</h2>
+    <p class="intro">Toute ressemblance avec des collègues existants serait purement fortuite.</p>
+    <table class="menaces">
+      <thead><tr><th scope="col"><span class="sr">Portrait</span></th><th scope="col">Nom</th><th scope="col">Signalement</th><th scope="col">Niveau</th></tr></thead>
+      <tbody>
+        <tr><td><img src="img/ennemis/user.webp" alt=""></td><td class="nom">Utilisateur</td><td><q>Ça marche pas ! J'ai rien touché.</q></td><td class="niv">modéré</td></tr>
+        <tr><td><img src="img/ennemis/stagiaire.webp" alt=""></td><td class="nom">Stagiaire</td><td><q>Je peux te poser une question ?</q></td><td class="niv">persistant</td></tr>
+        <tr><td><img src="img/ennemis/compta.webp" alt=""></td><td class="nom">Comptable</td><td><q>Note de frais refusée.</q></td><td class="niv">fin de mois</td></tr>
+        <tr><td><img src="img/ennemis/commercial.webp" alt=""></td><td class="nom">Commercial</td><td><q>J'ai promis ça au client pour demain.</q></td><td class="niv">élevé</td></tr>
+        <tr><td><img src="img/ennemis/chefprojet.webp" alt=""></td><td class="nom">Chef de projet</td><td><q>On fait un point ?</q></td><td class="niv">chronophage</td></tr>
+        <tr><td><img src="img/ennemis/consultant.webp" alt=""></td><td class="nom">Consultant</td><td><q>Cette conversation vous sera facturée.</q></td><td class="niv">coûteux</td></tr>
+        <tr><td><img src="img/ennemis/vip.webp" alt=""></td><td class="nom">Utilisateur VIP</td><td><q>Vous savez qui je suis ?</q></td><td class="niv">prioritaire</td></tr>
+        <tr><td><img src="img/ennemis/phishing.webp" alt=""></td><td class="nom">Phishing</td><td>Se déguise en bonus. Ne cliquez pas.</td><td class="niv">sournois</td></tr>
+        <tr><td><img src="img/ennemis/ransomware.webp" alt=""></td><td class="nom">Le Ransomware</td><td>Chiffre vos armes une par une.</td><td class="niv c">critique</td></tr>
+        <tr><td><img src="img/ennemis/winupdate.webp" alt=""></td><td class="nom">La Mise à jour forcée</td><td>Ne pas éteindre. Mise à jour 1 sur 487.</td><td class="niv c">critique</td></tr>
+        <tr><td><img src="img/ennemis/zeroday.webp" alt=""></td><td class="nom">Le Zero-day</td><td>Aucun correctif disponible.</td><td class="niv c">inconnu</td></tr>
+        <tr class="sep"><td colspan="4">Un boss par lieu d'intervention, vers 8 minutes</td></tr>
+        <tr><td><img src="img/ennemis/reunion.webp" alt=""></td><td class="nom">La Réunion sans fin</td><td>Open space. Récurrence : tous les jours.</td><td class="niv c">critique</td></tr>
+        <tr><td><img src="img/ennemis/legacy.webp" alt=""></td><td class="nom">Le Serveur legacy</td><td>Salle serveur. Personne ne sait ce qu'il fait.</td><td class="niv c">critique</td></tr>
+        <tr><td><img src="img/ennemis/audit.webp" alt=""></td><td class="nom">L'Audit ISO 27001</td><td>Archives. Il veut voir les preuves.</td><td class="niv c">critique</td></tr>
+        <tr><td><img src="img/ennemis/facture.webp" alt=""></td><td class="nom">La Facture cloud</td><td>Cloud. 40 GPU oubliés tout le week-end.</td><td class="niv c">critique</td></tr>
+        <tr><td><img src="img/ennemis/box.webp" alt=""></td><td class="nom">La Box internet</td><td>Lundi 6 h 00, dans le hall. Redémarre quand elle veut.</td><td class="niv c">critique</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-entre">
+    <h2 id="t-entre">Entre deux parties</h2>
+    <dl class="touches">
+      <dt>Boutique Budget DSI</dt><dd>Chaque partie rapporte du budget. Dépensez-le en améliorations permanentes : PV, dégâts, relances des choix, contrat de PRA…</dd>
+      <dt>Défi du jour</dt><dd>Même profil, même carte, même contrainte pour tout le monde ce jour-là. Gagnez pour une prime de budget.</dd>
+      <dt>Succès</dt><dd>Dix-huit objectifs à cocher, de « Premier ticket » à « Toute l'équipe ». Comparez avec les collègues.</dd>
+      <dt>Mode Astreinte</dt><dd>Débloqué après une victoire : ennemis plus coriaces, budget doublé.</dd>
+      <dt>Musique</dt><dd>Une musique par lieu et une pour les boss. <kbd class="k">M</kbd> pour la couper.</dd>
+    </dl>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-touches">
+    <h2 id="t-touches">Commandes</h2>
+    <dl class="touches">
+      <dt>Se déplacer</dt><dd><kbd class="k">Z</kbd> <kbd class="k">Q</kbd> <kbd class="k">S</kbd> <kbd class="k">D</kbd>, les flèches ou une manette</dd>
+      <dt>Attaquer</dt><dd>Rien à faire : vos armes tirent toutes seules</dd>
+      <dt>Choisir une amélioration</dt><dd>Un clic, ou <kbd class="k">1</kbd> <kbd class="k">2</kbd> <kbd class="k">3</kbd></dd>
+      <dt>Mettre en pause</dt><dd><kbd class="k">Échap</kbd>, ou le bouton pause sur mobile</dd>
+    </dl>
+  </section>
+  </div>
+
+  <div class="fiche" data-jeu="nanomonsters" hidden>
+  <section class="cadre" aria-labelledby="t-tournoi">
+    <h2 id="t-tournoi">Le tournoi</h2>
+    <p class="intro">Quatorze monstres, du plus tendre au plus énorme. Chaque victoire vous donne leurs pièces.</p>
+    <div class="tournoi">
+      <figure><img src="img/nano/adv01.webp" alt="" loading="lazy"><figcaption><b>Croâmidable</b><span>Une grenouille vantarde. Elle tire la langue de loin.</span></figcaption></figure>
+      <figure><img src="img/nano/adv02.webp" alt="" loading="lazy"><figcaption><b>Crabouille</b><span>Un crabe ronchon qui pince tout ce qui bouge.</span></figcaption></figure>
+      <figure><img src="img/nano/adv03.webp" alt="" loading="lazy"><figcaption><b>Piou-Piou Furax</b><span>Petit, jaune, et très en colère.</span></figcaption></figure>
+      <figure><img src="img/nano/adv04.webp" alt="" loading="lazy"><figcaption><b>Rhinocérock</b><span>Une tonne de briques lancée tête baissée.</span></figcaption></figure>
+      <figure><img src="img/nano/adv05.webp" alt="" loading="lazy"><figcaption><b>Requinquin</b><span>Un requin qui a appris à marcher.</span></figcaption></figure>
+      <figure><img src="img/nano/adv06.webp" alt="" loading="lazy"><figcaption><b>Hiboulet</b><span>Son hululement vous sonne.</span></figcaption></figure>
+      <figure><img src="img/nano/adv07.webp" alt="" loading="lazy"><figcaption><b>Scorpitek</b><span>Huit pattes, deux pinces, un dard.</span></figcaption></figure>
+      <figure><img src="img/nano/adv08.webp" alt="" loading="lazy"><figcaption><b>Tankosaure</b><span>Mi-dinosaure, mi-char. Il tire des briques.</span></figcaption></figure>
+      <figure><img src="img/nano/adv09.webp" alt="" loading="lazy"><figcaption><b>Kangouroule</b><span>Rebondit sans prévenir, griffe en retombant.</span></figcaption></figure>
+      <figure><img src="img/nano/adv10.webp" alt="" loading="lazy"><figcaption><b>Lamentis</b><span>Une mante aux bras-lames.</span></figcaption></figure>
+      <figure><img src="img/nano/adv11.webp" alt="" loading="lazy"><figcaption><b>Cyclopathe</b><span>Un robot à un œil. Il vise très bien.</span></figcaption></figure>
+      <figure><img src="img/nano/adv12.webp" alt="" loading="lazy"><figcaption><b>Draglouton</b><span>Il cuit d'abord, il goûte ensuite.</span></figcaption></figure>
+      <figure><img src="img/nano/adv13.webp" alt="" loading="lazy"><figcaption><b>Marteaurus</b><span>Un dinosaure à voile et deux marteaux.</span></figcaption></figure>
+      <figure><img src="img/nano/adv14.webp" alt="" loading="lazy"><figcaption><b>Le Méga Machin</b><span>Le champion. Personne ne sait ce que c'est.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-atelier">
+    <h2 id="t-atelier">L'atelier</h2>
+    <dl class="touches">
+      <dt>Corps</dt><dd>Trapu, Lézard, Boule, Carapace de crabe, Insecte, Colosse. Il décide des PV, de la défense et de la vitesse.</dd>
+      <dt>Tête</dt><dd>Mâchoire, Bec, Grenouille qui tire la langue, Yeux pédonculés, Requin, Hibou qui assomme, Corne qui charge, Œil laser, Dragon qui crache du feu.</dd>
+      <dt>Pattes</dt><dd>Quatre, deux, six pattes, chenilles ou ressorts : stabilité contre vitesse et esquive.</dd>
+      <dt>Bras</dt><dd>Pinces, Griffes, Marteaux qui assomment, Canons à briques, Lames qui font saigner.</dd>
+      <dt>Queue</dt><dd>Fouet qui repousse, Nageoire, Massue qui assomme, Dard qui empoisonne.</dd>
+      <dt>Dos</dt><dd>Piquants qui renvoient les coups, Carapace, Aileron, Voile qui régénère, Ailes pour esquiver, Réacteur pour foncer.</dd>
+    </dl>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-touches-nano">
+    <h2 id="t-touches-nano">Commandes</h2>
+    <dl class="touches">
+      <dt>Assembler</dt><dd>Cliquez sur une pièce ou une couleur : elle s'emboîte aussitôt.</dd>
+      <dt>Tourner la créature</dt><dd>Glissez avec la souris ou le doigt.</dd>
+      <dt>Combattre</dt><dd>Les combats sont automatiques. <kbd class="k">Vitesse x2</kbd> pour accélérer.</dd>
+      <dt>Musique</dt><dd><kbd class="k">M</kbd> pour la couper.</dd>
+    </dl>
+  </section>
+  </div>
+
+  <div class="fiche" data-jeu="parefeu-td" hidden>
+  <section class="cadre" aria-labelledby="t-defenses">
+    <h2 id="t-defenses">Les défenses</h2>
+    <p class="intro">Chaque défense a un taux de faux positifs. Améliorez-la pour qu'elle laisse passer le travail des utilisateurs.</p>
+    <div class="tournoi">
+      <figure><img src="img/parefeu/firewall.webp" alt="" loading="lazy"><figcaption><b>Pare-feu</b><span>Tire vite sur tout. Ses règles larges bloquent aussi des mails légitimes.</span></figcaption></figure>
+      <figure><img src="img/parefeu/antivirus.webp" alt="" loading="lazy"><figcaption><b>Antivirus</b><span>Lent et puissant, redoutable contre les malwares.</span></figcaption></figure>
+      <figure><img src="img/parefeu/antispam.webp" alt="" loading="lazy"><figcaption><b>Filtre anti-spam</b><span>Ralentit tout autour et démasque le phishing.</span></figcaption></figure>
+      <figure><img src="img/parefeu/ids.webp" alt="" loading="lazy"><figcaption><b>Sonde IDS</b><span>Révèle les menaces invisibles et renforce ses voisines.</span></figcaption></figure>
+      <figure><img src="img/parefeu/waf.webp" alt="" loading="lazy"><figcaption><b>Proxy WAF</b><span>Très longue portée, fait pour les injections et les bots.</span></figcaption></figure>
+      <figure><img src="img/parefeu/honeypot.webp" alt="" loading="lazy"><figcaption><b>Honeypot</b><span>Un leurre qui fige les menaces sur place.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-menaces">
+    <h2 id="t-menaces">Les menaces</h2>
+    <p class="intro">Elles arrivent par les câbles et visent le serveur. Les paquets blancs et bleus, eux, sont légitimes : ne les bloquez pas.</p>
+    <div class="tournoi">
+      <figure><img src="img/parefeu/spam.webp" alt="" loading="lazy"><figcaption><b>Spam</b><span>Pénible en masse.</span></figcaption></figure>
+      <figure><img src="img/parefeu/phishing.webp" alt="" loading="lazy"><figcaption><b>Phishing</b><span>Se déguise en mail légitime.</span></figcaption></figure>
+      <figure><img src="img/parefeu/virus.webp" alt="" loading="lazy"><figcaption><b>Virus</b><span>Le classique.</span></figcaption></figure>
+      <figure><img src="img/parefeu/ver.webp" alt="" loading="lazy"><figcaption><b>Ver</b><span>Se divise quand on le détruit.</span></figcaption></figure>
+      <figure><img src="img/parefeu/bot.webp" alt="" loading="lazy"><figcaption><b>Bot</b><span>Arrive par centaines : DDoS.</span></figcaption></figure>
+      <figure><img src="img/parefeu/injection.webp" alt="" loading="lazy"><figcaption><b>Injection SQL</b><span>Passe à travers le pare-feu.</span></figcaption></figure>
+      <figure><img src="img/parefeu/trojan.webp" alt="" loading="lazy"><figcaption><b>Cheval de Troie</b><span>Un cadeau plein de virus.</span></figcaption></figure>
+      <figure><img src="img/parefeu/ransomware.webp" alt="" loading="lazy"><figcaption><b>Ransomware</b><span>Blindé. S'il passe, ça fait mal.</span></figcaption></figure>
+      <figure><img src="img/parefeu/rootkit.webp" alt="" loading="lazy"><figcaption><b>Rootkit</b><span>Invisible et se répare.</span></figcaption></figure>
+      <figure><img src="img/parefeu/boss_ver.webp" alt="" loading="lazy"><figcaption><b>Ver Géant</b><span>Boss du collège.</span></figcaption></figure>
+      <figure><img src="img/parefeu/boss_zero.webp" alt="" loading="lazy"><figcaption><b>Zero-Day</b><span>Boss du datacenter. Invisible.</span></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-regles-pf">
+    <h2 id="t-regles-pf">Les règles</h2>
+    <dl class="touches">
+      <dt>Défaite</dt><dd>Le serveur tombe à zéro, ou les tickets atteignent 100 % et la direction fait débrancher le pare-feu.</dd>
+      <dt>Cartes d'incident</dt><dd>Une à chaque vague : redémarrer, café serré, escalade au N2, lire la doc, débrancher le câble...</dd>
+      <dt>Étoiles</dt><dd>Victoire, serveur intact à 75 %, tickets toujours sous 50 %. Chaque étoile finance le comité budgétaire.</dd>
+    </dl>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-touches-pf">
+    <h2 id="t-touches-pf">Commandes</h2>
+    <dl class="touches">
+      <dt>Installer</dt><dd>Touchez un emplacement près d'un câble, puis choisissez la défense.</dd>
+      <dt>Améliorer ou revendre</dt><dd>Touchez une défense déjà installée.</dd>
+      <dt>Vagues</dt><dd>Appelez la vague suivante en avance pour gagner du budget. <kbd class="k">Vitesse x2</kbd> et <kbd class="k">x3</kbd> pour accélérer.</dd>
+      <dt>Musique</dt><dd><kbd class="k">M</kbd> pour la couper.</dd>
+    </dl>
+  </section>
+  </div>
+
+</main>
+
+<footer class="pied">
+  <p>HyperNanoMegaMachine fait des jeux gratuits, sans publicité, sans compte et sans traceur. Votre progression reste enregistrée dans votre navigateur, nulle part ailleurs.</p>
+  <details>
+    <summary>Mentions légales</summary>
+    <p>Site personnel non commercial. Hébergement : GitHub Pages, GitHub, Inc., San Francisco, États-Unis (<a href="https://pages.github.com" rel="noopener">pages.github.com</a>). Nom de domaine enregistré auprès de Mailo (Mail Object), France. Ce site ne dépose aucun cookie et ne collecte aucune donnée personnelle. Polices VT323 et Chakra Petch sous licence SIL Open Font License.</p>
+  </details>
+</footer>
+
+<nav class="legende" aria-label="Raccourcis clavier">
+  <span><b>Entrée</b> Jouer</span>
+  <span class="clavier"><b>Haut / Bas</b> Choisir un jeu</span>
+  <span><a href="#demarrage" style="color:inherit;text-decoration:none"><b>Menu</b> de démarrage</a></span>
+</nav>
+
+<script src="jeux.js"></script>
+<script>
+(function () {
+  const jeux = window.JEUX || [];
+  const liste = document.getElementById("liste");
+  const aide = document.getElementById("aide");
+  document.getElementById("nb-jeux").textContent = String(jeux.length);
+  let sel = 0;
+
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function afficher() {
+    liste.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-selected", i === sel ? "true" : "false"));
+    document.querySelectorAll(".fiche").forEach((f) => { f.hidden = !jeux[sel] || f.dataset.jeu !== jeux[sel].id; });
+    const j = jeux[sel];
+    if (!j) { aide.innerHTML = "<p>Aucun jeu installé pour le moment.</p>"; return; }
+    aide.innerHTML =
+      `<h3>${esc(j.titre)}</h3>` +
+      `<img src="${esc(j.couverture)}" alt="Couverture de ${esc(j.titre)}">` +
+      `<p>${esc(j.resume)}</p>` +
+      `<ul>${(j.infos || []).map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` +
+      `<a class="jouer" id="jouer" href="${esc(j.jouer)}"><kbd>Entrée</kbd> Jouer à ${esc(j.titre)}</a>`;
+  }
+
+  jeux.forEach((j, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.innerHTML = `<span>${esc(j.titre)}</span><small>${esc(j.genre || "")}</small>`;
+    b.addEventListener("click", () => { sel = i; afficher(); });
+    b.addEventListener("dblclick", () => { location.href = j.jouer; });
+    liste.appendChild(b);
+  });
+  // Lien direct vers un jeu : index.html#nanomonsters
+  const ancre = location.hash.replace("#", "");
+  jeux.forEach((j, i) => { if (j.id === ancre) sel = i; });
+  if (jeux.length === 1) {
+    const n = document.createElement("p");
+    n.className = "vide";
+    n.textContent = "D'autres jeux s'ajouteront ici.";
+    liste.appendChild(n);
+  }
+  afficher();
+
+  // Raccourcis façon BIOS : Entrée pour jouer, Haut / Bas pour choisir
+  document.addEventListener("keydown", (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const tag = (document.activeElement && document.activeElement.tagName) || "";
+    if (e.key === "Enter" && tag !== "A" && tag !== "BUTTON" && tag !== "SUMMARY" && jeux[sel]) {
+      location.href = jeux[sel].jouer;
+    } else if ((e.key === "ArrowDown" || e.key === "ArrowUp") && jeux.length > 1 && tag !== "INPUT") {
+      e.preventDefault();
+      sel = (sel + (e.key === "ArrowDown" ? 1 : jeux.length - 1)) % jeux.length;
+      afficher();
+    }
+  });
+
+  // Séquence de démarrage : les lignes apparaissent une seule fois, au chargement
+  const lignes = Array.from(document.querySelectorAll(".post .seq"));
+  const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduit) { lignes.forEach((l) => l.classList.add("on")); return; }
+  let k = 0;
+  const pas = () => {
+    if (k >= lignes.length) return;
+    lignes[k++].classList.add("on");
+    setTimeout(pas, k <= 2 ? 260 : 170);
+  };
+  setTimeout(pas, 150);
+})();
+</script>
+</body>
+</html>

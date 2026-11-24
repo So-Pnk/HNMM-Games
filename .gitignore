@@ -1,0 +1,5 @@
+# Fichiers internes de Godot, inutiles en ligne
+*.import
+
+# Notes locales, non publiées
+LISEZMOI.md

@@ -1,0 +1,13 @@
+{
+  "name": "HyperNanoMegaMachine",
+  "short_name": "HNMM",
+  "description": "Jeux gratuits dans le navigateur, sans publicité et sans inscription.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0000aa",
+  "theme_color": "#0000aa",
+  "icons": [
+    {"src": "img/icones/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "img/icones/icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}
