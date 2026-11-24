@@ -28,10 +28,10 @@ window.JEUX = [
     jouer: "parefeu-td/",
   },
   {
-    id: "baie", titre: "Baie de brassage", genre: "Puzzle réseau",
-    couverture: "img/couverture-baie.webp",
+    id: "reseau-pnp", titre: "Réseau PnP", genre: "Puzzle réseau",
+    couverture: "img/couverture-reseau-pnp.webp",
     resume: "Vingt clients, vingt baies à câbler. Reliez les prises aux switchs, peignez les ports dans le bon VLAN, passez les liaisons en trunk, gérez le budget PoE, la fibre et la DMZ. Le niveau est gagné quand tout le monde a internet ; une baie propre rapporte les trois étoiles.",
     infos: ["Dans le navigateur, sans installation", "Souris ou tactile", "20 clients, de la boulangerie au datacenter", "41 Mo au premier lancement"],
-    jouer: "baie/",
+    jouer: "reseau-pnp/",
   },
 ];
