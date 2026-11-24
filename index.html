@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HyperNanoMegaMachine, jeux gratuits dans le navigateur</title>
-<meta name="description" content="HyperNanoMegaMachine, studio de jeux gratuits jouables dans le navigateur. Au menu : IT SupeRlike, NanoMonsters et Pare-Feu-TD.">
+<meta name="description" content="HyperNanoMegaMachine, studio de jeux gratuits jouables dans le navigateur. Au menu : IT SupeRlike, NanoMonsters, Pare-Feu-TD et Baie de brassage.">
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -36,7 +36,7 @@
       <li class="seq"><span>Recherche de café</span><span class="pt"></span><span class="v ok">trouvé</span></li>
       <li class="seq"><span>Tickets en attente</span><span class="pt"></span><span class="v">4 812</span></li>
       <li class="seq"><span>Utilisateurs qui ont « rien touché »</span><span class="pt"></span><span class="v">détectés</span></li>
-      <li class="seq"><span>Jeux installés</span><span class="pt"></span><span class="v ok" id="nb-jeux">3</span></li>
+      <li class="seq"><span>Jeux installés</span><span class="pt"></span><span class="v ok" id="nb-jeux">4</span></li>
     </ol>
     <p class="attente seq">Appuyez sur <kbd class="k">Entrée</kbd> pour lancer un jeu <span class="curseur" aria-hidden="true"></span></p>
   </section>
@@ -218,6 +218,37 @@
       <dt>Améliorer ou revendre</dt><dd>Touchez une défense déjà installée.</dd>
       <dt>Vagues</dt><dd>Appelez la vague suivante en avance pour gagner du budget. <kbd class="k">Vitesse x2</kbd> et <kbd class="k">x3</kbd> pour accélérer.</dd>
       <dt>Musique</dt><dd><kbd class="k">M</kbd> pour la couper.</dd>
+    </dl>
+  </section>
+  </div>
+
+  <div class="fiche" data-jeu="baie" hidden>
+  <section class="cadre" aria-labelledby="t-baie-materiel">
+    <h2 id="t-baie-materiel">Dans la baie</h2>
+    <dl class="touches">
+      <dt>Panneau de brassage</dt><dd>Chaque port correspond à une prise murale. La liste du client dit qui est branché où.</dd>
+      <dt>Switch</dt><dd>Ports d'accès dans un VLAN, ports en trunk pour les liaisons et les bornes Wi-Fi, ports PoE avec un budget en watts, ports SFP pour la fibre.</dd>
+      <dt>Pare-feu</dt><dd>WAN vers la box, LAN vers le réseau interne en trunk, DMZ pour le serveur web.</dd>
+      <dt>Box, routeur, serveurs</dt><dd>La box donne internet, les serveurs se branchent directement au switch dans leur VLAN.</dd>
+    </dl>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-baie-regles">
+    <h2 id="t-baie-regles">Les règles</h2>
+    <dl class="touches">
+      <dt>Gagner</dt><dd>Testez le réseau : chaque appareil doit être alimenté, dans son VLAN, relié à la passerelle et à internet.</dd>
+      <dt>Étoiles</dt><dd>Une baie propre rapporte les trois étoiles. Câbles qui se croisent sans raison, couleurs hors code ou jarretières sur une prise libre en retirent, sans jamais bloquer le niveau.</dd>
+      <dt>Pièges</dt><dd>Deux liaisons entre les mêmes switchs forment une boucle et tout tombe. Un switch trop chargé n'alimente plus ses derniers appareils PoE.</dd>
+    </dl>
+  </section>
+
+  <section class="cadre" aria-labelledby="t-baie-touches">
+    <h2 id="t-baie-touches">Commandes</h2>
+    <dl class="touches">
+      <dt>Brancher</dt><dd>Choisissez la couleur de jarretière, touchez un port puis un autre. La longueur est choisie toute seule.</dd>
+      <dt>Débrancher</dt><dd>Touchez un port branché, ou clic droit.</dd>
+      <dt>VLAN et trunk</dt><dd>Choisissez un VLAN dans la barre d'outils puis touchez les ports du switch, comme avec un pinceau.</dd>
+      <dt>Se déplacer</dt><dd>Molette ou boutons + et - pour zoomer, glisser pour se déplacer. <kbd class="k">Ctrl</kbd> + <kbd class="k">Z</kbd> pour annuler.</dd>
     </dl>
   </section>
   </div>
