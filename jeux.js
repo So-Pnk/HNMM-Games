@@ -34,4 +34,11 @@ window.JEUX = [
     infos: ["Dans le navigateur, sans installation", "Souris ou tactile", "20 clients, de la boulangerie au datacenter", "41 Mo au premier lancement"],
     jouer: "rso-pnp/",
   },
+  {
+    id: "traceroute", titre: "Traceroute", genre: "Simulation réseau",
+    couverture: "img/couverture-traceroute.webp",
+    resume: "Douze dépannages, du premier câble au pare-feu. Branchez les équipements sur le schéma, réglez adresses, passerelles, DHCP, DNS, routes, NAT et règles de filtrage, puis envoyez un paquet\u00a0: il avance saut par saut et raconte ce qui lui arrive, jusqu'à la réponse ou jusqu'à l'endroit où il se perd.",
+    infos: ["Dans le navigateur, sans installation", "Souris conseillée", "12 missions, une notion par mission", "41 Mo au premier lancement"],
+    jouer: "traceroute/",
+  },
 ];
